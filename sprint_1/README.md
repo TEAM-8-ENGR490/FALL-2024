@@ -1,4 +1,4 @@
-# Hexapod Rover Project - Sprint 1
+# Multiterrain Rover Project - Sprint 1
 
 
 ### Sprint 1 Objectives
