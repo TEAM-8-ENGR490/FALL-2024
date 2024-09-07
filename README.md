@@ -12,9 +12,10 @@ This project aims to develop an autonomous hexapod rover capable of navigating a
 
 - **Adaptive Locomotion System**  
   The rover utilizes an adaptive system for movement, switching between wheels, legs, and flying mode based on terrain conditions.
-  - **Wheels**: Energy-efficient movement on flat or slightly uneven surfaces.
-  - **Legs**: Activated for overcoming obstacles that the wheels can't navigate.
-  - **Flying Mode**: Deployed when neither wheels nor legs can move the rover over challenging terrain or across gaps.
+  - **Wheels**: Energy-efficient movement on flat or slightly uneven surfaces. (Priority)
+  - **Legs**: Activated for overcoming obstacles that the wheels can't navigate. (Priority)
+  - **Flying Mode**: Deployed when neither wheels nor legs can move the rover over challenging terrain or across gaps. (Conceptual, shall be implemented if time permits)
+  - **Climbing mode**: Deployed when neither wheels nor legs can move the rover over challenging terrain (Conceptual, shall be implemented if time permits)
 
 - **Computer Vision & Autonomous Navigation**  
   The rover employs computer vision systems for real-time terrain analysis, allowing it to decide when to switch between locomotion modes and to navigate autonomously. Its AI capabilities reduce the need for human intervention in remote or hard-to-reach locations.
