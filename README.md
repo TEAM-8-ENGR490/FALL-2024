@@ -1,6 +1,3 @@
-Here's a preliminary, broad README file for your ENGR 490 project:
-
----
 
 # Multi-Terrain Mobile Robot - Hexapod Rover Project
 
