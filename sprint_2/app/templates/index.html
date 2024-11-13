@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team 8 YOLOv8 Live Demo</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: white;
+            margin: 0;
+        }
+        #result {
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            max-width: 800px;
+            width: 100%;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Team 8 YOLOv8 WebSocket Streaming Demo</h1>
+    <button id="toggleCamera">Switch Camera</button>
+    <img id="result" alt="YOLOv8 Inference Result" />
+
+    <script>
+        const toggleCameraButton = document.getElementById('toggleCamera');
+        const resultImage = document.getElementById('result');
+
+        let useFrontCamera = false;
+        let websocket;
+        let stream;
+
+        async function startStreaming() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: useFrontCamera ? "user" : "environment" }
+                });
+
+                const videoTrack = stream.getVideoTracks()[0];
+                const imageCapture = new ImageCapture(videoTrack);
+
+                websocket = new WebSocket("wss://144.172.189.89:1234/ws");
+
+                websocket.onmessage = event => {
+                    resultImage.src = event.data;
+                };
+
+                // Function to capture and send frames at 20 FPS
+                function sendFrame() {
+                    imageCapture.grabFrame()
+                        .then(bitmap => {
+                            const canvas = document.createElement("canvas");
+
+                            // Reduced canvas size for lower resolution
+                            const targetWidth = 480;
+                            const targetHeight = 360;
+                            canvas.width = targetWidth;
+                            canvas.height = targetHeight;
+
+                            const context = canvas.getContext("2d");
+                            context.drawImage(bitmap, 0, 0, targetWidth, targetHeight);
+
+                            // Convert canvas to JPEG with lower quality (e.g., 0.5)
+                            const imageData = canvas.toDataURL("image/jpeg", 0.5);
+
+                            if (websocket.readyState === WebSocket.OPEN) {
+                                websocket.send(imageData);
+                            }
+
+                            // Use setTimeout to achieve 20 FPS
+                            setTimeout(sendFrame, 1000 / 20);
+                        })
+                        .catch(error => console.error("Error capturing frame:", error));
+                }
+
+                // Start sending frames
+                sendFrame();
+            } catch (err) {
+                console.error("Error accessing camera:", err);
+            }
+        }
+
+        toggleCameraButton.addEventListener("click", () => {
+            useFrontCamera = !useFrontCamera;
+            startStreaming();
+        });
+
+        startStreaming();
+    </script>
+</body>
+</html>
