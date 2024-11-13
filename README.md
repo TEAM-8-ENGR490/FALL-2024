@@ -1,31 +1,43 @@
-
-# Multi-Terrain Mobile Robot - Hexapod Rover Project
+# Litter-Picking and Disposal Robot Project
 
 ## Project Overview
 
-This project aims to develop an autonomous hexapod rover capable of navigating a wide variety of terrains. Equipped with both wheels and legs, as well as potential flying capability, the rover is designed to capture images of wildlife, flora, and geological features, collect environmental samples, and contribute to scientific research in diverse fields such as environmental monitoring, geological surveys, and wildlife studies.
+This project aims to develop an autonomous three-wheeled litter-picking and disposal robot equipped with a forklift-like actuator arm. Designed to navigate a variety of outdoor terrains, the robot will autonomously locate, pick up, and dispose of litter, contributing to environmental cleanup efforts in urban, park, and natural settings. The robot’s design supports efficient mobility and manipulation capabilities, enabling it to interact with objects of various sizes and shapes.
 
 ## Key Features
 
-- **Adaptive Locomotion System**  
-  The rover utilizes an adaptive system for movement, switching between wheels, legs, and flying mode based on terrain conditions.
-  - **Wheels**: Energy-efficient movement on flat or slightly uneven surfaces. (Priority)
-  - **Legs**: Activated for overcoming obstacles that the wheels can't navigate. (Priority)
-  - **Flying Mode**: Deployed when neither wheels nor legs can move the rover over challenging terrain or across gaps. (Conceptual, shall be implemented if time permits)
-  - **Climbing mode**: Deployed when neither wheels nor legs can move the rover over challenging terrain (Conceptual, shall be implemented if time permits)
+- **Three-Wheeled Adaptive Locomotion System**  
+  The robot uses three wheels for optimal stability and mobility across different surfaces, including paved paths, grass, and light gravel. The wheels are designed to provide energy-efficient and smooth movement on uneven terrain.
+  - **Drive Wheels**: Enable efficient, straightforward movement on flat and mildly uneven surfaces.
+  - **Turning Mechanism**: The three-wheel configuration allows for tight, precise turns, helping the robot navigate confined spaces and densely littered areas.
+
+- **Forklift-Style Actuator Arm**  
+  The robot is equipped with a forklift-like arm designed to pick up litter of varying shapes and sizes. The arm can be lowered to ground level for easy collection and raised to place the litter in an onboard disposal bin or a designated trash collection area.
+  - **Gripping Mechanism**: Adaptable gripper for securely handling items such as bottles, cans, and small bags.
+  - **Forklift Motion**: The arm moves vertically, enabling the robot to scoop, lift, and release objects with precision and ease.
 
 - **Computer Vision & Autonomous Navigation**  
-  The rover employs computer vision systems for real-time terrain analysis, allowing it to decide when to switch between locomotion modes and to navigate autonomously. Its AI capabilities reduce the need for human intervention in remote or hard-to-reach locations.
+  The robot utilizes computer vision to detect and identify litter items and assess terrain conditions. It employs AI-driven algorithms to differentiate between litter and natural objects (e.g., rocks, plants) and navigates to each item autonomously, reducing the need for human supervision.
+  - **YOLOv8 Nano for Litter Detection**: Using YOLOv8 Nano, a lightweight and efficient object detection model, the robot can accurately identify common litter types while minimizing processing demands. This model enables real-time object detection essential for autonomous litter collection.
+  - **Obstacle Avoidance**: Built-in sensors prevent collisions and ensure the robot navigates around obstacles safely.
 
-- **Sample Collection and Environmental Monitoring**  
-  Sensors and tools collect environmental data (e.g., humidity, temperature) and physical samples. The data is analyzed and shared with a dedicated mobile or web-based app for real-time insights.
+- **Streaming & Hosting Infrastructure**  
+  - **FastAPI for Streaming**: A FastAPI application handles real-time video streaming, allowing the robot’s live feed to be monitored remotely. FastAPI provides a fast, asynchronous framework that integrates well with the YOLOv8 detection pipeline, ensuring efficient processing and streaming performance.
+  - **Docker & Proxmox for Hosting**: The robot’s software stack, including YOLOv8 and FastAPI, is containerized with Docker, ensuring consistency and portability. The containers are hosted on Proxmox, providing a stable and scalable environment for managing multiple robots, streaming video, and processing data.
 
-- **Remote and Autonomous Control**  
-  Users can operate the rover manually via a web-based control dashboard or set it to run autonomously, depending on the mission's needs.
+- **Autonomous and Remote Control Modes**  
+  The robot can operate autonomously, cleaning designated areas independently, or can be manually controlled through a web-based dashboard for precise operations in complex environments.
 
 ## Applications
 
-- **Geological Surveys**: Analyzing and exploring diverse geological formations.
-- **Environmental Monitoring**: Collecting real-time data on environmental conditions.
-- **Wildlife Studies**: Observing wildlife with minimal disturbance.
-- **Disaster Response**: Reaching areas inaccessible to traditional robots.
+- **Urban Cleanup**: Collecting litter in city parks, sidewalks, and public areas.
+- **Environmental Conservation**: Assisting in maintaining cleanliness in natural reserves, beaches, and trails.
+- **Event Spaces**: Keeping large event areas clean, minimizing the need for manual cleanup.
+- **Educational Demonstrations**: Showcasing robotics in environmental sustainability and cleanup projects.
+
+## Additional Features (Future Enhancements)
+
+- **Expanded Litter Identification**: Upgrading the computer vision system to recognize a wider range of litter types.
+- **Investigation of SLAM (Simultaneous Localization and Mapping)**: We aim to explore SLAM capabilities to improve the robot’s navigation and mapping. Potential options include using LiDAR or integrating OpenCV libraries to provide real-time mapping for autonomous navigation and obstacle handling.
+
+This setup with YOLOv8 Nano, FastAPI, Docker, and Proxmox provides a robust, scalable, and efficient framework for the robot's vision and control systems, making it an effective solution for autonomous litter collection and environmental maintenance.
