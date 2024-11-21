@@ -1,7 +1,7 @@
 
 ### **Robot Simulation: Manual Control**
 
-This simulation allows a user to control a robot manually in an environment with obstacles. The robot can move forward, backward, and rotate using keyboard inputs. The simulation integrates SLAM (Simultaneous Localization and Mapping) with a LiDAR sensor for obstacle detection and map updating.
+Usaing Pygame, this simulation allows a user to control a robot manually in an environment with obstacles. The robot can move forward, backward, and rotate using keyboard inputs. The simulation integrates SLAM (Simultaneous Localization and Mapping) with a LiDAR sensor for obstacle detection and map updating.
 
 ---
 
