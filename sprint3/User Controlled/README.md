@@ -21,8 +21,7 @@ Using Pygame, this simulation allows a user to control a robot manually in an en
    - LiDAR scans the environment to detect walls and obstacles.
    - The map updates in real-time with the robot's movements.
 
-4. **Deceleration**:
-   - The robot gradually slows down if no movement keys are pressed, providing smoother control.
+
 
 ---
 
