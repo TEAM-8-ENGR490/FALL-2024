@@ -21,7 +21,7 @@ Frontiers act as targets for the robot to explore further. By navigating to thes
 
 | **Aspect**                 | **Greedy Exploration**                        | **Non-Greedy Exploration**                 |
 |----------------------------|-----------------------------------------------|--------------------------------------------|
-| **Definition**             | Selects the closest frontier to the robot.   | Considers overall map coverage and efficiency. |
+| **Definition**             | Selects a random single frontier near the robot.   | Considers overall map coverage and efficiency. |
 | **Selection Criteria**     | Distance from the robot.                     | Heuristic based on proximity, map value, and coverage potential. |
 | **Pathfinding**            | Moves directly to the nearest frontier.      | Uses A* to plan an optimal path to frontiers. |
 | **Advantages**             | Simple, fast, and computationally cheap.     | Comprehensive coverage of the entire map.  |
