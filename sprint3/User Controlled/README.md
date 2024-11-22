@@ -140,9 +140,5 @@ def draw_robot(x, y, angle):
    - The SLAM map is displayed in real-time using OpenCV.
    - Explored areas and obstacles are dynamically updated based on the robot's position and LiDAR scans.
 
-2. **Smooth Movement**:
-   - Gradual acceleration and deceleration provide more realistic robot movement.
-   - Prevents abrupt changes in speed or direction.
-
 3. **Collision Avoidance**:
    - Ensures the robot does not overlap with walls or obstacles, enhancing realism and safety.
